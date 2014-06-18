@@ -14,6 +14,10 @@ class Forum
     parse_topics
   end
 
+  def forum_number
+    @number ||= @link.to_s.gsub('/', '').split('-')[0]
+  end
+
   private
 
   def load_page
@@ -27,7 +31,6 @@ class Forum
 
   def parse_topics
     topics = topic_links
-    #puts "Forum #{@page.title} has following topics: #{topics}"
     topics.each do |topic_link|
       parse_topic(topic_link)
     end
@@ -38,7 +41,7 @@ class Forum
   end
 
   def parse_topic(topic_link)
-    topic = Topic.new(topic_link)
+    topic = Topic.new(topic_link, self)
     topics << topic
     begin
       topic.parse

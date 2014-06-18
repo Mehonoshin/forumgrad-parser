@@ -8,6 +8,6 @@ class Storage
   end
 
   def save_post(post_hash)
-    File.open(DB_FILE, 'a') { |f| f.write(post_hash) }
+    File.open(DB_FILE, 'a') { |f| f.write("\n #{post_hash}") }
   end
 end

@@ -3,6 +3,7 @@ require 'singleton'
 require './lib/storage'
 require './lib/post'
 require './lib/topic'
+require './lib/topic_page'
 require './lib/forum'
 require './lib/bot'
 
