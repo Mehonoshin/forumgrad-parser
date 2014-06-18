@@ -17,12 +17,22 @@ class Post
       topic_name: @post.at_css('h2 a').text,
       post_id: @post.children[0].attributes["name"].value,
       created_at: @post.at_css('h2').children.last.text,
-      username: (@post.at_css('.username a') || @post.at_css('.username')).text,
-      context: @post.at_css('.entry-content').children[1].to_html
+      username: username,
+      context: post_content
     }
   end
 
+  def username
+    (@post.at_css('.username a') || @post.at_css('.username')).text
+  end
 
+  def post_content
+    if $bot.login == username
+      @post.at_css('.entry-content').children[0].to_html
+    else
+      @post.at_css('.entry-content').children[1].to_html
+    end
+  end
 end
 
 

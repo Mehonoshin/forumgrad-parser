@@ -2,7 +2,7 @@ class Bot
   BASE_URL = "http://abutria.ru"
   SLEEP_TIME = 1
 
-  attr_accessor :agent, :page
+  attr_accessor :agent, :page, :login
 
   def self.save_page(page, name="tmp/page-#{Time.now.to_i}.html")
     File.open(name, "w") { |f| f.write(page.body) }
